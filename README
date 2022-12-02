@@ -1,0 +1,61 @@
+# Project #: 3 (HashTable)
+
+* Author: Hunter Walp
+* Class: CS321 
+* Semester: Fall 2022
+
+## Overview
+
+This program uses A HashTable implemented with an array to store objects using
+various object types. For the sake of testing, three types are used, Random Integers,
+Date objects and Strings.
+
+## Compiling and Using
+
+To compile and run, first run javac HashTest.java
+once compiled, you can run java HashTest -<input type> -load factor> -[<debug level>]
+the input type can be 1, 2 or three. The load factor can be between 0 and 1, and
+the optional debug level will print out a summary of the test if you select 0,
+and will create two dump files if 1 selected.
+
+## Simulation results:
+Input source 1: random number
+
+alpha	     linear    double
+-----------------------------
+0.5         0.50      0.40
+0.6	    0.74      0.55
+0.7	    1.17      0.80
+0.8	    2.02      1.23
+0.9	    4.37      2.46
+0.95	    9.65      4.77
+0.98	    29.76     9.72
+0.99	    41.83     20.60
+
+
+Input source 2: current time
+
+alpha        linear    double
+-----------------------------
+0.5          1.0       1.0
+0.6          1.0       1.0
+0.7          1.0       1.0
+0.8          1.0       1.0
+0.9          1.0       1.0
+0.95         1.0       1.0
+0.98         1.0       1.0
+0.99         1.0       1.0 
+
+
+Input source 3: word-list
+
+alpha        linear    double
+-----------------------------
+0.5        2.66          1.83
+0.6	   4.41          2.55
+0.7	   7.33          3.98
+0.8	   12.81         6.59
+0.9	   39.38         18.06 
+0.95	   141.58        34.02 
+0.98	   354.93        146.90
+0.99	   508.50        244.45
