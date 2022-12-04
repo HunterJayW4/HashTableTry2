@@ -72,6 +72,11 @@ public class HashTest
 			{
 				HashObject object = new HashObject(ran.nextInt());
 				linRan.linInsert(object);
+			}
+
+			while (dubRan.getLoad() <= load)
+			{
+				HashObject object = new HashObject(ran.nextInt());
 				dubRan.dubInsert(object);
 			}
 			if (debug == -1 || debug == 0 || debug == 1)
@@ -97,15 +102,21 @@ public class HashTest
 							{
 								linStr = "table[" + i + "]: " + linRan.getIndex(i).toString() + "\n";
 							}
-							if (dubRan.getIndex(i)!= null)
+							writer.write(linStr);
+							linStr = new String("");
+							writer.flush();
+							i++;
+						}
+						i = 0;
+
+						while (i < dubRan.getItems() - 1)
+						{
+							if (dubRan.getIndex(i) != null)
 							{
 								dubStr = "table[" + i + "]: " + dubRan.getIndex(i).toString() + "\n";
 							}
-							writer.write(linStr);
-							dWriter.write(dubStr + "penis");
+							dWriter.write(dubStr);
 							dubStr = new String("");
-							linStr = new String("");
-							writer.flush();
 							dWriter.flush();
 							i++;
 						}
@@ -113,7 +124,6 @@ public class HashTest
 					catch (IOException e)
 					{
 						System.out.println("Unable to write to file.");
-
 					}
 				}
 			}
@@ -121,6 +131,10 @@ public class HashTest
 				//Input type 2 == Date objects.
 				if (inputType == 2)
 				{
+					linearDump.delete();
+					doubleDump.delete();
+					linearDump.createNewFile();
+					doubleDump.createNewFile();
 					while (linDate.getLoad() <= load)
 					{
 						HashObject object = new HashObject(current);
@@ -136,36 +150,38 @@ public class HashTest
 						{
 							String linStr = "";
 							String dubStr = "";
-							linearDump.delete();
-							doubleDump.delete();
-							linearDump.createNewFile();
-							doubleDump.createNewFile();
 							try 
 							{
 								FileWriter writer = new FileWriter(linearDump, true);
 								FileWriter dWriter = new FileWriter(doubleDump, true);
 								int i = 0;
-								while (i < 95791)
+								while (i < linDate.getSize())
 								{
 									if (linDate.getIndex(i) != null)
 									{
 										linStr = "table[" + i + "]: " + linDate.getIndex(i).toString() + "\n";
 									}
-									if (dubDate.getIndex(i)!= null)
+									writer.write(linStr);
+									writer.flush();
+									linStr = new String("");
+									i++;
+								}
+								i = 0;
+								while (i < dubDate.getSize())
+								{
+									if (dubDate.getIndex(i) != null)
 									{
 										dubStr = "table[" + i + "]: " + dubDate.getIndex(i).toString() + "\n";
 									}
-									writer.write(linStr);
 									dWriter.write(dubStr);
+									dWriter.flush();
 									dubStr = new String("");
-									linStr = new String("");
 									i++;
 								}
 							}
 							catch (IOException e)
 							{
 								System.out.println("Unable to write to file.");
-
 							}
 						}
 					}
