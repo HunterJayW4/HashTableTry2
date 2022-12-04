@@ -55,15 +55,13 @@ public class HashTable<T>
 			}
 		}
 	}
-		
-	//Double-hashing insert method.
-	@SuppressWarnings("unchecked")
+
 	public void dubInsert(HashObject<T> object)
 	{
-		int i = 0;
 		int index = h1(object.getKey());
 		int temp = index;
-		while (temp < this.size)
+		int i = 1;
+		while (temp <= this.size)
 		{
 			if (table[temp] == null)
 			{
@@ -81,14 +79,16 @@ public class HashTable<T>
 			{
 				numProbes++;
 				object.increaseProbes();
-				if (i == 0)
-					temp += h2(object.getKey());
-				else
-					temp += i * h2(object.getKey())
-;				i++;
+				temp += h2(object.getKey());
+				if (temp > this.size)
+				{
+					temp = temp - this.size;
+				}
 			}
 		}
 	}
+		
+	//Double-hashing insert method.
 
 	//Method for getting the load of the Table.
 	public double getLoad()

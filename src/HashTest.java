@@ -102,9 +102,11 @@ public class HashTest
 								dubStr = "table[" + i + "]: " + dubRan.getIndex(i).toString() + "\n";
 							}
 							writer.write(linStr);
-							dWriter.write(dubStr);
+							dWriter.write(dubStr + "penis");
 							dubStr = new String("");
 							linStr = new String("");
+							writer.flush();
+							dWriter.flush();
 							i++;
 						}
 					}
@@ -202,13 +204,18 @@ public class HashTest
 										FileWriter writer = new FileWriter(linearDump, true);
 										FileWriter dWriter = new FileWriter(doubleDump, true);
 										int i = 0;
-										while (i < linWord.getSize() - 1)
+										while (i < linWord.getSize())
 										{
 											if (linWord.getIndex(i) != null)
 											{
 												writer.write("table[" + i + "]: " + linWord.getIndex(i).toString() + "\n");
 												writer.flush();
 											}
+											i++;
+										}
+										i = 0;
+										while (i < dubWord.getSize())
+										{
 											if (dubWord.getIndex(i) != null)
 											{
 												dWriter.write("table[" + i + "]: " + dubWord.getIndex(i).toString() + "\n");

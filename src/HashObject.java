@@ -91,4 +91,6 @@ public class HashObject<T>
 	{
 		this.probeCount++;
 	}
+
+	public void setProbeCount(int count) { this.probeCount = count;}
 }
